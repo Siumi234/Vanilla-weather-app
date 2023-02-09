@@ -23,8 +23,9 @@ function formatDate(timestamp) {
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
-  let description = document.querySelector("#description");
+  let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
 
@@ -37,19 +38,20 @@ function displayTemperature(response) {
   windElement.innerHTML = Math.round(response.data.wind.speed);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
-    "src"`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
-function search(city) {
+function searchCity(city) {
   let apiKey = "77d1da0a9341f4377306e3eb51b0c56f";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiurl).then(displayTemperature);
+  axios.get(apiUrl).then(displayTemperature);
 }
 function search(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
-  search(cityInputElement.value);
+  searchCity(cityInputElement.value);
 }
 function displayFarenheitTemperature(event) {
   event.preventDefault();
@@ -71,11 +73,11 @@ function displayCelsiusTemperature(event) {
 let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");
-form.addEventListener("submit", handleSubmit);
+form.addEventListener("submit", search);
 
 let farenheitLink = document.querySelector("#farenheit-link");
 farenheitLink.addEventListener("click", displayFarenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
-seach("Milan");
+searchCity("Milan");

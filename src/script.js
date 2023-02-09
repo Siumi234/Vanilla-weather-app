@@ -55,7 +55,7 @@ function search(event) {
 }
 function displayFarenheitTemperature(event) {
   event.preventDefault();
-  let temperatureElement = document.querySelector("#tempertaure");
+  let temperatureElement = document.querySelector("#temperature");
   // remove the active class from the celsius link
   celsiusLink.classList.remove("active");
   farenheitLink.classList.remove("active");

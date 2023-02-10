@@ -65,6 +65,7 @@ a:link {
   color: black;
   cursor: default;
 }
-.search {
+
+input {
   border-color: blue;
 }
